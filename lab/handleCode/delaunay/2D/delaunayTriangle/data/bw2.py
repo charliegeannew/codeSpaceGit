@@ -60,6 +60,7 @@ def ifPointInTriangleCircumcircle(point,triangle,pointIndexList):
 def bw(pointList):
     beginPoint,endPoint=getBeginEndPointCoord(pointList)
     pointListWht=getNewPointList(pointList)
+
     superTriangleCoord=getSuperTrianglePointCoord(beginPoint,endPoint)
 
     pointNum=len(pointListWht)
@@ -93,7 +94,7 @@ def bw(pointList):
     #     x.printPoint()
 
     trianglation=[]
-    triagnleFlag=[]
+    triangleFlag=[]
     edgeUserFlagList=[0 for x in edgeListWht]
     badEdgeUserFlagList=[0 for x in edgeListWht]
     
@@ -126,10 +127,13 @@ def bw(pointList):
         for triangle in badTriangle:
             triangleFlag[triangle.tIndex]=0
         for edge in polygon:
-            pass
+            tempEdgeIndex=[0,0,0]
+            tempPointIndex=[0,0,0]
+            newTriangle=ds.triangleWht(tempPointIndex,tempEdgeIndex,len(trianglation))
+            trianglation.append(newTriangle)
+            triangleFlag.append(0)
     for triangle in trianglation:
         pass
-    return trianglation 
     return trianglation
 
 def main():
