@@ -57,7 +57,7 @@ class edgeWht:
 class triangleWht:
     def __init__(self,aPoint=pointWht(),bPoint=pointWht(),cPoint=pointWht(),aEdge=edgeWht(),bEdge=edgeWht(),cEdge=edgeWht(),index=-1):
         self.aPoint=aPoint.copy()
-        self.bPoint=aPoint.copy()
+        self.bPoint=bPoint.copy()
         self.cPoint=cPoint.copy()
         self.aEdge=aEdge.copy()
         self.bEdge=bEdge.copy()
@@ -65,26 +65,26 @@ class triangleWht:
         self.indexInList=index
     def printTriangle(self):
         print("this is the ",self.indexInList,"th triangle")
-        self.aPoint.printPoint()
-        self.aPoint.printPoint()
-        self.aPoint.printPoint()
+        # self.aPoint.printPoint()
+        # self.bPoint.printPoint()
+        # self.cPoint.printPoint()
         self.aEdge.printEdge()
-        self.aEdge.printEdge()
-        self.aEdge.printEdge()
+        self.bEdge.printEdge()
+        self.cEdge.printEdge()
     def copy(self):
         triangle=triangleWht(self.aPoint,self.bPoint,self.cPoint,self.aEdge,self.bEdge,self.cEdge,self.indexInList)
         return triangle
 
-temp=[1,2,3]
-coord=coordWht(temp)
-coord.printCoord()
-coord2=coord.copy()
-coord2.printCoord()
-coord2.x=3
-coord2.y=4
-coord2.printCoord()
-coord.printCoord()
-point1=pointWht(coord,0)
-point1.printPoint()
-point2=pointWht(coord2,1)
-point2.printPoint()
+# temp=[1,2,3]
+# coord=coordWht(temp)
+# coord.printCoord()
+# coord2=coord.copy()
+# coord2.printCoord()
+# coord2.x=3
+# coord2.y=4
+# coord2.printCoord()
+# coord.printCoord()
+# point1=pointWht(coord,0)
+# point1.printPoint()
+# point2=pointWht(coord2,1)
+# point2.printPoint()

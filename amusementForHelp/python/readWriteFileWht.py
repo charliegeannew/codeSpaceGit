@@ -23,6 +23,82 @@ def readFileLine(fileName):
     rfpt.close()
     return res
 
+def writeFileDirect(fileName,tData):
+    pass
+
+def writeFileLine(fileName,tData):
+    pass
+
+def writeFileInVtkFormat(fileName,triangleList):
+    pass
+
+def writeFileInPLYFormat(fileName,triangleList):
+    header=[
+        "ply",
+        "format ascii 1.0",
+        "comment made by anonymous",
+        "comment this file is a test file",
+        "element vertex ",
+        "property float32 x",
+        "property float32 y",
+        "property float32 z",
+        "element face ",
+        "property list uint8 int32 vertex_index",
+        "end_header"
+    ]
+    writeData=[]
+    pointList=[]
+    faceList=[]
+    pointNum=len(pointList)
+    triangleNum=len(faceList)
+    for triangle in triangleList:
+        if triangle.indexInList <=0:
+            continue 
+        else:
+            tempStr=''
+            tempStr+=str(triangle.aPoint.coord.x)
+            tempStr+="    "
+            tempStr+=str(triangle.aPoint.coord.y)
+            tempStr+="    "
+            tempStr+=str(triangle.aPoint.coord.z)
+            pointList.append(tempStr)
+
+            tempStr=''
+            tempStr+=str(triangle.bPoint.coord.x)
+            tempStr+="    "
+            tempStr+=str(triangle.bPoint.coord.y)
+            tempStr+="    "
+            tempStr+=str(triangle.bPoint.coord.z)
+            pointList.append(tempStr)
+
+            tempStr=''
+            tempStr+=str(triangle.cPoint.coord.x)
+            tempStr+="    "
+            tempStr+=str(triangle.cPoint.coord.y)
+            tempStr+="    "
+            tempStr+=str(triangle.cPoint.coord.z)
+            pointList.append(tempStr)
+
+            tempStr="3    "+str(pointNum)+"    "+str(pointNum+1)+"    "+str(pointNum+2)
+            faceList.append(tempStr)
+            pointNum+=3
+            # if pointNum>12:
+            #     break
+    writeData=pointList+faceList
+    pointNum=len(pointList)
+    triangleNum=len(faceList)
+    header[4]+=str(pointNum)
+    header[8]+=str(triangleNum)
+    with open(fileName,"w+") as wfpt:
+        for line in header:
+            wfpt.writelines(line)
+            wfpt.write("\n")
+        for line in writeData:
+            wfpt.writelines(line)
+            wfpt.write("\n")
+
+        wfpt.close()
+
 def changeAllStringToListBy(fileStr,char):
     res=[]
     return res
